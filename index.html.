@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LUMIK — Objets japonais du quotidien</title>
+<meta name="description" content="Objets japonais du quotidien, sourcés directement auprès de fabricants japonais. Pas de gadgets, pas d'intermédiaires." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verm:#D6402B;--verm-d:#B5331F;
+  --encre:#1A1714;--cream:#F4EFE7;--cream-2:#FBF8F2;
+  --gris:#6E665C;--bord:#E6DECF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',system-ui,sans-serif;background:var(--cream-2);color:var(--encre);-webkit-font-smoothing:antialiased}
+.serif{font-family:'Shippori Mincho',serif}
+.banner{background:#2B2724;color:#EDE7DC;text-align:center;font-size:15px;padding:14px 16px;letter-spacing:.01em}
+nav{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
+.navin{max-width:1100px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:14px;flex:1}
+.seal{width:54px;height:54px;border-radius:50%;background:var(--verm);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-weight:700;font-size:26px;flex-shrink:0}
+.word{font-family:'Shippori Mincho',serif;font-weight:600;font-size:28px;letter-spacing:.14em}
+.btn-ghost{border:1.5px solid var(--encre);background:transparent;color:var(--encre);padding:14px 20px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn-verm{border:none;background:var(--verm);color:#fff;padding:14px 20px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;white-space:nowrap}
+header{background:radial-gradient(120% 90% at 70% 0%,var(--cream) 0%,var(--cream-2) 60%);padding:64px 20px 72px}
+.hwrap{max-width:1100px;margin:0 auto}
+.eyebrow{color:var(--verm);font-weight:700;font-size:14px;letter-spacing:.22em;text-transform:uppercase}
+h1{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(46px,11vw,86px);line-height:1.02;letter-spacing:-.01em;margin:26px 0 0}
+.sub{font-size:18px;color:var(--gris);max-width:560px;margin-top:26px;line-height:1.7}
+.cta{margin-top:38px;border:none;background:var(--verm);color:#fff;padding:18px 32px;border-radius:12px;font-weight:700;font-size:17px;cursor:pointer;font-family:inherit}
+.cta:hover{background:var(--verm-d)}
+.features{max-width:1100px;margin:0 auto;padding:8px 20px 64px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.feat{border:1px solid var(--bord);border-radius:14px;padding:26px 22px;background:#fff}
+.feat .k{font-family:'Noto Serif JP',serif;font-weight:700;font-size:36px;color:var(--verm)}
+.feat h3{font-family:'Shippori Mincho',serif;font-size:19px;font-weight:600;margin:10px 0 6px}
+.feat p{font-size:15px;color:var(--gris);line-height:1.55}
+section.cat{max-width:1100px;margin:0 auto;padding:8px 20px 96px}
+h2{font-family:'Shippori Mincho',serif;font-weight:700;font-size:clamp(30px,5vw,44px);margin-bottom:8px}
+.cat-sub{color:var(--gris);margin-bottom:30px}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{border:1px solid var(--bord);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.card .img{aspect-ratio:1;background:var(--cream);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .img .ph{font-family:'Noto Serif JP',serif;font-size:34px;color:#D8CDBA}
+.card .body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verm)}
+.card h3{font-family:'Shippori Mincho',serif;font-size:16px;font-weight:600;line-height:1.35}
+.card .desc{font-size:13px;color:var(--gris);line-height:1.5;flex:1}
+.card .row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.prix{font-weight:700;font-size:19px}
+.add{border:none;background:var(--encre);color:#fff;padding:10px 15px;border-radius:9px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:background .2s}
+.add.ok{background:#1F8A4C}
+.news{background:var(--encre);color:#fff}
+.news .in{max-width:1100px;margin:0 auto;padding:64px 20px;text-align:center}
+.news h2{color:#fff}
+.news p{color:#B7AE9F;margin:12px 0 26px}
+.news-form{display:flex;gap:10px;max-width:430px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.news input{flex:1;min-width:200px;border:1px solid #3A352F;background:#241F1B;color:#fff;padding:14px 16px;border-radius:10px;font-size:15px;font-family:inherit}
+.news button{border:none;background:var(--verm);color:#fff;padding:14px 26px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit}
+footer{max-width:1100px;margin:0 auto;padding:30px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--gris)}
+footer .word{font-size:18px;color:var(--encre)}
+.cnt{background:#fff;color:var(--verm);border-radius:999px;padding:0 7px;font-size:13px;margin-left:4px;font-weight:700}
+.overlay{position:fixed;inset:0;background:rgba(26,23,20,.45);z-index:50;display:none}
+.overlay.open{display:block}
+.drawer{position:absolute;top:0;right:0;height:100%;width:min(410px,92vw);background:var(--cream-2);display:flex;flex-direction:column;box-shadow:-8px 0 36px rgba(0,0,0,.16)}
+.dhead{padding:20px 22px;border-bottom:1px solid var(--bord);display:flex;justify-content:space-between;align-items:center}
+.dhead h3{font-family:'Shippori Mincho',serif;font-weight:700;font-size:20px}
+.close{border:none;background:none;font-size:24px;cursor:pointer;color:var(--gris)}
+.ship{padding:16px 22px;border-bottom:1px solid var(--bord)}
+.ship p{font-size:13px;margin-bottom:8px;color:var(--gris)}
+.bar{height:6px;background:var(--bord);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--verm);transition:width .3s}
+.ditems{flex:1;overflow-y:auto;padding:8px 22px}
+.ditem{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--bord)}
+.ditem .t{width:58px;height:58px;border-radius:8px;background:var(--cream);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ditem .t img{width:100%;height:100%;object-fit:cover}
+.ditem .t .ph{font-family:'Noto Serif JP',serif;font-size:22px;color:#D8CDBA}
+.qte{display:flex;align-items:center;gap:8px}
+.qte button{border:1px solid var(--bord);background:#fff;width:28px;height:28px;border-radius:7px;font-size:16px;cursor:pointer;color:var(--encre);line-height:1}
+.dfoot{padding:20px 22px;border-top:1px solid var(--bord)}
+.stotal{display:flex;justify-content:space-between;margin-bottom:16px;font-size:16px}
+.checkout{width:100%;border:none;background:var(--verm);color:#fff;padding:16px;border-radius:11px;font-weight:700;font-size:16px;cursor:pointer;font-family:inherit}
+.checkout:disabled{background:#D8C9BE;cursor:default}
+.muted{color:var(--gris)}
+</style>
+</head>
+<body>
+<div class="banner">Sélection japonaise · Livraison offerte dès 50 €</div>
+<nav><div class="navin">
+  <div class="brand">
+    <span class="seal">灯</span>
+    <span class="word">LUMIK</span>
+  </div>
+  <button class="btn-ghost" id="goCat2">Catalogue</button>
+  <button class="btn-verm" id="openCart">Panier <span class="cnt" id="badge">0</span></button>
+</div></nav>
+
+<header><div class="hwrap">
+  <p class="eyebrow">Objets japonais du quotidien</p>
+  <h1 class="serif">Bien faits.<br>Utiles chaque jour.<br>Venus du Japon.</h1>
+  <p class="sub">Chaque objet est sourcé directement auprès de fabricants japonais — coutellerie de Seki, papeterie de Tokyo, artisanat du quotidien. Pas de gadgets, pas d'intermédiaires.</p>
+  <button class="cta" id="goCat">Découvrir le catalogue</button>
+</div></header>
+
+<section class="features">
+  <div class="feat"><span class="k">直</span><h3>Direct du Japon</h3><p>Sourcé sur place, sans intermédiaire superflu.</p></div>
+  <div class="feat"><span class="k">選</span><h3>Sélection serrée</h3><p>Chaque référence est choisie, testée, retenue.</p></div>
+  <div class="feat"><span class="k">安</span><h3>Prix juste</h3><p>Le bon objet au bon prix, pas le gadget de trop.</p></div>
+</section>
+
+<section class="cat" id="cat">
+  <h2 class="serif">Catalogue</h2>
+  <p class="cat-sub" id="status">Chargement du catalogue…</p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="news">
+  <div class="in">
+    <h2 class="serif">Les nouveautés, sobrement.</h2>
+    <p>Une sélection par mois. Pas de spam, pas de remplissage.</p>
+    <div class="news-form">
+      <input id="email" type="email" placeholder="ton@email.com" />
+      <button id="subBtn">S'inscrire</button>
+    </div>
+    <p id="newsMsg" style="margin-top:14px;display:none"></p>
+  </div>
+</section>
+
+<footer>
+  <span class="word">LUMIK</span>
+  <span>© 2026 — 日用品</span>
+</footer>
+
+<div class="overlay" id="overlay">
+  <aside class="drawer">
+    <div class="dhead"><h3 class="serif">Panier</h3><button class="close" id="closeCart">×</button></div>
+    <div class="ship"><p id="shipMsg"></p><div class="bar"><i id="bar" style="width:0%"></i></div></div>
+    <div class="ditems" id="ditems"><p class="muted" style="margin-top:24px">Ton panier est vide. Le catalogue t'attend.</p></div>
+    <div class="dfoot">
+      <div class="stotal"><span class="muted">Sous-total</span><strong id="stotal">0.00 €</strong></div>
+      <button class="checkout" id="checkout" disabled>Passer commande</button>
+    </div>
+  </aside>
+</div>
+
+<script>
+const SUPABASE_URL='https://vegnlyxycfmkzlklctip.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlZ25seXh5Y2Zta3psa2xjdGlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTIwNDEsImV4cCI6MjA5NzAyODA0MX0.Q_sK3HjK6NZA5foeu7FsIBZSjsWfVcq8mHMZ_VNSoJw';
+const SEUIL=50;
+let produits=[],panier=[];
+const $=id=>document.getElementById(id);
+const prix=p=>Number(p.prix_vente_eur||0);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+fetch(SUPABASE_URL+'/rest/v1/produits_lumik?actif=eq.true&select=*&order=id',{headers:{apikey:SUPABASE_ANON,Authorization:'Bearer '+SUPABASE_ANON}})
+.then(r=>{if(!r.ok)throw 0;return r.json()})
+.then(d=>{produits=d;render()})
+.catch(()=>{$('status').textContent='Catalogue momentanément indisponible. Réessaie dans un instant.';$('status').style.color='#B5331F'});
+
+function render(){
+  $('status').style.display='none';
+  $('grid').innerHTML=produits.map(p=>`
+    <article class="card">
+      <div class="img">${p.image_url?`<img src="${p.image_url}" alt="${esc(p.nom)}">`:`<span class="ph">灯</span>`}</div>
+      <div class="body">
+        ${p.categorie?`<span class="tag">${esc(p.categorie)}</span>`:''}
+        <h3 class="serif">${esc(p.nom)}</h3>
+        ${p.description?`<p class="desc">${esc(p.description)}</p>`:''}
+        <div class="row"><span class="prix">${prix(p).toFixed(2)} €</span>
+        <button class="add" data-id="${p.id}">Ajouter</button></div>
+      </div>
+    </article>`).join('');
+  document.querySelectorAll('.add').forEach(b=>b.onclick=()=>add(b));
+}
+function add(btn){
+  const p=produits.find(x=>String(x.id)===btn.dataset.id);
+  const ex=panier.find(i=>i.id===p.id); ex?ex.qte++:panier.push({...p,qte:1});
+  btn.textContent='Ajouté ✓';btn.classList.add('ok');
+  setTimeout(()=>{btn.textContent='Ajouter';btn.classList.remove('ok')},1400);
+  drawer();
+}
+function modif(id,d){const i=panier.find(x=>x.id===id);if(i){i.qte+=d;if(i.qte<=0)panier=panier.filter(x=>x.id!==id)}drawer()}
+function drawer(){
+  const n=panier.reduce((s,i)=>s+i.qte,0);
+  $('badge').textContent=n;
+  const st=panier.reduce((s,i)=>s+prix(i)*i.qte,0), reste=Math.max(0,SEUIL-st);
+  $('bar').style.width=Math.min(100,st/SEUIL*100)+'%';
+  $('shipMsg').innerHTML=reste>0?`Plus que <strong style="color:var(--encre)">${reste.toFixed(2)} €</strong> pour la livraison offerte`:`<strong style="color:#1F8A4C">Livraison offerte ✓</strong>`;
+  $('stotal').textContent=st.toFixed(2)+' €';
+  $('checkout').disabled=panier.length===0;
+  $('ditems').innerHTML=panier.length?panier.map(i=>`
+    <div class="ditem"><div class="t">${i.image_url?`<img src="${i.image_url}">`:`<span class="ph">灯</span>`}</div>
+    <div style="flex:1"><p style="font-size:14px;font-weight:600;line-height:1.3">${esc(i.nom)}</p>
+    <p style="font-size:14px;margin:4px 0 8px">${prix(i).toFixed(2)} €</p>
+    <div class="qte"><button data-m="${i.id}" data-d="-1">−</button><span>${i.qte}</span><button data-m="${i.id}" data-d="1">+</button></div></div></div>`).join('')
+    :'<p class="muted" style="margin-top:24px">Ton panier est vide. Le catalogue t\\'attend.</p>';
+  document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>modif(isNaN(+b.dataset.m)?b.dataset.m:+b.dataset.m,+b.dataset.d));
+}
+$('openCart').onclick=()=>$('overlay').classList.add('open');
+$('closeCart').onclick=()=>$('overlay').classList.remove('open');
+$('overlay').onclick=e=>{if(e.target===$('overlay'))$('overlay').classList.remove('open')};
+const toCat=()=>$('cat').scrollIntoView({behavior:'smooth'});
+$('goCat').onclick=toCat;$('goCat2').onclick=toCat;
+$('subBtn').onclick=()=>{
+  const v=$('email').value,m=$('newsMsg');m.style.display='block';
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){m.textContent='Inscrit. À bientôt.';m.style.color='#3FD37E';$('email').value=''}
+  else{m.textContent='Adresse e-mail invalide.';m.style.color='#FF8A7E'}
+};
+</script>
+</body>
+</html>
