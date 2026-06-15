@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>灯 LUMIK — Artisanat Japonais</title>
+    <style>
+        :root {
+            --bg: #F7F6F2;
+            --ink: #1a1916;
+            --accent: #8B6B47;
+            --border: #e3e0d8;
+            --muted: #8a857c;
+            --card: #ffffff;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+        
+        /* s_banner */
+        #banner {
+            background: #0a0d13;
+            color: #ffffff;
+            padding: 10px 14px;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+        
+        /* s_nav */
+        #nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-brand { font-weight: 700; font-size: 15px; letter-spacing: 0.06em; }
+        .nav-center { display: flex; gap: 20px; font-size: 12px; }
+        .nav-center a { text-decoration: none; color: var(--ink); transition: color 0.2s; }
+        .nav-center a:hover { color: var(--accent); }
+        #cartBadge {
+            background: var(--accent);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #cartBadge:hover { background: #7a5a38; }
+        
+        /* s_header */
+        #header {
+            text-align: center;
+            padding: 60px 14px;
+            background: var(--bg);
+        }
+        /* h_h1 */
+        #header h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0 0 28px 0;
+            letter-spacing: -0.01em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
+        }
+        /* h_cta */
+        #cta {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 13px 28px;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            letter-spacing: 0.04em;
+            transition: background 0.2s;
+        }
+        #cta:hover { background: #7a5a38; }
+        .kanji { font-size: 16px; font-weight: 400; color: var(--muted); margin-top: 16px; letter-spacing: 10px; }
+        
+        /* s_features */
+        #features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            padding: 48px 14px;
+            border-top: 1px solid var(--border);
+            background: var(--card);
+        }
+        .feature { text-align: center; }
+        .feature-kanji { font-size: 24px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+        .feature-title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .feature-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+        
+        /* s_cat */
+        #cat {
+            padding: 48px 14px;
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+        #cat h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.01em;
+        }
+        /* c_status */
+        #status {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 16px;
+            height: 20px;
+        }
+        /* c_grid */
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .card:hover { border-color: var(--accent); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+        .card-img { background: #f0ebe3; height: 150px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+        .card-info { padding: 12px; }
+        .card-name { font-weight: 600; font-size: 12px; margin-bottom: 6px; line-height: 1.3; }
+        .card-price { color: var(--accent); font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+        .card-btn {
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: background 0.2s;
+        }
+        .card-btn:hover { background: #7a5a38; }
+        
+        /* s_news */
+        #news {
+            padding: 48px 14px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            background: var(--card);
+        }
+        #news h3 { font-size: 16px; font-weight: 600; margin: 0 0 14px 0; }
+        #newsForm { display: flex; gap: 8px; max-width: 340px; margin: 0 auto; }
+        /* nw_email */
+        #email { flex: 1; padding: 10px 12px; border: 1px solid var(--border); font-size: 12px; border-radius: 0; background: var(--bg); }
+        #email::placeholder { color: var(--muted); }
+        /* nw_btn */
+        #subBtn { background: var(--accent); color: #fff; border: none; padding: 10px 16px; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: 0.03em; transition: background 0.2s; }
+        #subBtn:hover { background: #7a5a38; }
+        
+        /* s_footer */
+        footer {
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            padding: 24px 14px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+        }
+        
+        /* s_cart (overlay) */
+        #drawer {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 340px;
+            height: 100vh;
+            background: var(--card);
+            border-left: 1px solid var(--border);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+        }
+        #drawer.open { transform: translateX(0); }
+        #drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        #drawer.open ~ #drawer-overlay { opacity: 1; pointer-events: all; }
+        /* ct_bar */
+        #bar {
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            font-size: 13px;
+            background: var(--bg);
+        }
+        /* ct_items */
+        #ditems {
+            flex: 1;
+            padding: 12px 14px;
+            overflow-y: auto;
+        }
+        .ditem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .ditem-qty { display: flex; gap: 8px; align-items: center; }
+        .ditem-btn { background: none; border: none; cursor: pointer; font-size: 14px; padding: 0 4px; }
+        /* ct_total */
+        #stotal {
+            padding: 12px 14px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--accent);
+        }
+        /* ct_checkout */
+        #checkout {
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.03em;
+            margin-top: auto;
+            transition: background 0.2s;
+        }
+        #checkout:hover { background: #7a5a38; }
+        
+        @media (max-width: 768px) {
+            #features { grid-template-columns: 1fr; }
+            #grid { grid-template-columns: repeat(2, 1fr); }
+            #drawer { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- s_banner -->
+    <div id="banner">🚚 Livraison gratuite à partir de 50€</div>
+    
+    <!-- s_nav -->
+    <nav id="nav">
+        <div class="nav-brand">灯 LUMIK</div>
+        <div class="nav-center">
+            <a href="#cat">Catalogue</a>
+            <a href="#news">Newsletter</a>
+        </div>
+        <div id="cartBadge" onclick="drawer()">0</div>
+    </nav>
+    
+    <!-- s_header -->
+    <section id="header">
+        <!-- h_h1 -->
+        <h2>Bien faits. Utiles chaque jour. Venus du Japon.</h2>
+        <!-- h_cta -->
+        <button id="cta" onclick="toCat()">Découvrir le catalogue</button>
+        <div class="kanji">直 選 安</div>
+    </section>
+    
+    <!-- s_features -->
+    <section id="features">
+        <!-- f_direct -->
+        <div class="feature">
+            <div class="feature-kanji">直</div>
+            <div class="feature-title">Direct du Japon</div>
+            <div class="feature-desc">Sans intermédiaire. Seki, Tokyo, Kyoto. Artisans certifiés.</div>
+        </div>
+        <!-- f_select -->
+        <div class="feature">
+            <div class="feature-kanji">選</div>
+            <div class="feature-title">Sélection serrée</div>
+            <div class="feature-desc">Chaque objet testé. Durabilité garantie. 3 ans minimum.</div>
+        </div>
+        <!-- f_prix -->
+        <div class="feature">
+            <div class="feature-kanji">安</div>
+            <div class="feature-title">Prix juste</div>
+            <div class="feature-desc">Transparence totale. Zéro markup caché. Vous payez réel.</div>
+        </div>
+    </section>
+    
+    <!-- s_cat -->
+    <section id="cat">
+        <h3>Catalogue</h3>
+        <!-- c_import -->
+        <label style="display:inline-block;margin-bottom:14px;font-size:11px;font-weight:600;color:var(--accent);cursor:pointer;border:1px solid var(--border);padding:8px 12px;">
+            📥 Importer CSV SuperDelivery
+            <input type="file" id="csvFile" accept=".csv" style="display:none" onchange="importCSV(event)">
+        </label>
+        <!-- c_status -->
+        <div id="status"></div>
+        <!-- c_grid -->
+        <div id="grid"></div>
+    </section>
+    
+    <!-- s_news -->
+    <section id="news">
+        <h3>Rester informé</h3>
+        <form id="newsForm" onsubmit="handleSub(event)">
+            <!-- nw_email -->
+            <input type="email" id="email" placeholder="vous@exemple.fr" required>
+            <!-- nw_btn -->
+            <button type="submit" id="subBtn">S'inscrire</button>
+        </form>
+    </section>
+    
+    <!-- s_footer -->
+    <footer>
+        <p>© 2026 灯 LUMIK — Artisanat japonais direct</p>
+        <p style="margin-top: 8px; font-size: 10px;">Seki (couteaux) • Tokyo (ustensiles) • Kyoto (déco, papier)</p>
+    </footer>
+    
+    <!-- s_cart overlay -->
+    <div id="drawer">
+        <!-- ct_bar -->
+        <div id="bar">🛒 Panier</div>
+        <!-- ct_items -->
+        <div id="ditems"></div>
+        <!-- ct_total -->
+        <div id="stotal">Sous-total: 0€</div>
+        <!-- ct_checkout -->
+        <button id="checkout">Valider la commande</button>
+    </div>
+    <div id="drawer-overlay" onclick="drawer()"></div>
+    
+    <script>
+        // cfg_seuil
+        const SEUIL = 50;
+        // cfg_whatsapp (format international sans +, ex: 33612345678)
+        const WHATSAPP = '33600000000';
+        
+        // st_produits (données locales)
+        const produits = [
+            { id: 1, nom: 'Couteau Seki (petite lame)', emoji: '🔪', prix_vente_eur: 24 },
+            { id: 2, nom: 'Épluche-légumes Tokyo', emoji: '🥕', prix_vente_eur: 12 },
+            { id: 3, nom: 'Hashi baguettes Kyoto', emoji: '🥢', prix_vente_eur: 8 },
+            { id: 4, nom: 'Bol Arita céramique', emoji: '🍲', prix_vente_eur: 18 },
+            { id: 5, nom: 'Papier washi artisanal', emoji: '📜', prix_vente_eur: 6 },
+            { id: 6, nom: 'Couteau chef Seki (long)', emoji: '🔨', prix_vente_eur: 45 },
+            { id: 7, nom: 'Ciseaux cuisine Seki', emoji: '✂️', prix_vente_eur: 14 },
+            { id: 8, nom: 'Plateau laqué rouge', emoji: '🏮', prix_vente_eur: 32 },
+            { id: 9, nom: 'Mortier suribachi', emoji: '⚗️', prix_vente_eur: 22 },
+            { id: 10, nom: 'Tissu tenugui coton', emoji: '🧣', prix_vente_eur: 11 }
+        ];
+        
+        // st_panier
+        let panier = JSON.parse(localStorage.getItem('lumik_panier') || '[]');
+
+        // fn_save
+        const savePanier = () => localStorage.setItem('lumik_panier', JSON.stringify(panier));
+        
+        // fn_prix
+        const prix = (p) => p.prix_vente_eur;
+        
+        // fn_esc
+        const esc = (s) => {
+            const div = document.createElement('div');
+            div.textContent = s;
+            return div.innerHTML;
+        };
+        
+        // fn_csv
+        function importCSV(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const lines = ev.target.result.split(/\r?\n/).filter(l => l.trim());
+                const header = lines[0].split(',').map(h => h.trim());
+                const iId = header.indexOf('id');
+                const iNom = header.indexOf('nom');
+                const iEmoji = header.indexOf('emoji');
+                const iPrix = header.indexOf('prix_vente_eur');
+                if (iNom < 0 || iPrix < 0) {
+                    document.getElementById('status').textContent = '❌ CSV invalide (colonnes nom, prix_vente_eur requises)';
+                    return;
+                }
+                const rows = lines.slice(1).map((l, k) => {
+                    const c = l.split(',');
+                    return {
+                        id: iId >= 0 ? parseInt(c[iId]) || k + 1 : k + 1,
+                        nom: (c[iNom] || '').trim(),
+                        emoji: iEmoji >= 0 ? (c[iEmoji] || '📦').trim() : '📦',
+                        prix_vente_eur: parseFloat(c[iPrix]) || 0
+                    };
+                }).filter(p => p.nom);
+                produits.length = 0;
+                produits.push(...rows);
+                localStorage.setItem('lumik_produits', JSON.stringify(produits));
+                render();
+                document.getElementById('status').textContent = `✅ ${rows.length} produits importés`;
+            };
+            reader.readAsText(file);
+        }
+
+        // fn_fetch (mockée)
+        function fetch_produits() {
+            document.getElementById('status').textContent = '';
+            render();
+        }
+        
+        // fn_render
+        function render() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = produits.map(p => `
+                <div class="card">
+                    <div class="card-img">${p.emoji || '📦'}</div>
+                    <div class="card-info">
+                        <div class="card-name">${esc(p.nom)}</div>
+                        <div class="card-price">${prix(p).toFixed(2)}€</div>
+                        <button class="card-btn" onclick="add(${p.id}, '${esc(p.nom)}', ${prix(p)})">Ajouter</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // fn_add
+        function add(id, nom, prix_item) {
+            panier.push({ id, nom, prix: prix_item });
+            savePanier();
+            drawer_update();
+        }
+        
+        // fn_modif
+        function modif(id, delta) {
+            const idx = panier.findIndex(x => x.id === id);
+            if (idx >= 0) {
+                if (delta > 0) panier.push(panier[idx]);
+                else panier.splice(idx, 1);
+            }
+            savePanier();
+            drawer_update();
+        }
+        
+        // fn_drawer + drawer_update
+        function drawer() {
+            document.getElementById('drawer').classList.toggle('open');
+        }
+        
+        function drawer_update() {
+            const badge = document.getElementById('cartBadge');
+            badge.textContent = panier.length;
+            
+            const ditems = document.getElementById('ditems');
+            const grouped = {};
+            panier.forEach(x => {
+                if (!grouped[x.id]) grouped[x.id] = { nom: x.nom, prix: x.prix, qty: 0 };
+                grouped[x.id].qty++;
+            });
+            
+            ditems.innerHTML = Object.entries(grouped).map(([id, item]) => {
+                return `<div class="ditem">
+                    <div style="flex:1;">
+                        <div>${item.nom}</div>
+                        <div style="font-size:10px;color:var(--muted);">×${item.qty}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-weight:600;margin-bottom:4px;">${(item.prix * item.qty).toFixed(2)}€</div>
+                        <div class="ditem-qty">
+                            <button class="ditem-btn" onclick="modif(${id}, -1)">−</button>
+                            <button class="ditem-btn" onclick="modif(${id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+            
+            const total = panier.reduce((a, x) => a + x.prix, 0).toFixed(2);
+            const bar = document.getElementById('bar');
+            
+            if (total >= SEUIL) {
+                bar.textContent = '🎉 Livraison gratuite déverrouillée!';
+            } else {
+                const remaining = (SEUIL - total).toFixed(2);
+                bar.textContent = `🚚 ${remaining}€ de plus pour la livraison gratuite`;
+            }
+            
+            document.getElementById('stotal').textContent = `Sous-total: ${total}€`;
+        }
+        
+        // fn_checkout
+        function checkout() {
+            if (panier.length === 0) { alert('Panier vide'); return; }
+            const grouped = {};
+            panier.forEach(x => {
+                if (!grouped[x.id]) grouped[x.id] = { nom: x.nom, prix: x.prix, qty: 0 };
+                grouped[x.id].qty++;
+            });
+            const lignes = Object.values(grouped)
+                .map(i => `• ${i.nom} ×${i.qty} — ${(i.prix * i.qty).toFixed(2)}€`)
+                .join('\n');
+            const total = panier.reduce((a, x) => a + x.prix, 0).toFixed(2);
+            const msg = `Bonjour LUMIK, je commande :\n${lignes}\n\nTotal : ${total}€`;
+            window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+        document.getElementById('checkout').addEventListener('click', checkout);
+
+        // fn_tocat
+        function toCat() {
+            document.getElementById('cat').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // fn_sub
+        function handleSub(e) {
+            e.preventDefault();
+            alert('✅ Inscrit! Vous recevrez nos actus.');
+            document.getElementById('email').value = '';
+        }
+        
+        // Init
+        const saved = localStorage.getItem('lumik_produits');
+        if (saved) { produits.length = 0; produits.push(...JSON.parse(saved)); }
+        fetch_produits();
+        drawer_update();
+    </script>
+</body>
+</html>
